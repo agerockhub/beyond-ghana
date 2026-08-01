@@ -95,7 +95,7 @@ body {
 
   min-height: 80vh;
 
-  background: url("/src/assets/waterfall.png") center/cover no-repeat;
+  background: url("../assets/waterfall.png") center/cover no-repeat;
 
   display: flex;
 
