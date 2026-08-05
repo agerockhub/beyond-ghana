@@ -5,29 +5,44 @@ import { displayDestinations } from "./ui.js";
 displayDestinations(destinations);
 
 // ============================
-// SEARCH
+// SEARCH + CATEGORY FILTER
 // ============================
 
 const searchInput = document.getElementById("search-input");
+const categoryFilter = document.getElementById("category-filter");
 
-searchInput.addEventListener("input", () => {
+function filterDestinations() {
 
     const searchText = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
 
-    const filteredDestinations = destinations.filter(destination =>
+    const filtered = destinations.filter(destination => {
 
-        destination.name.toLowerCase().includes(searchText) ||
+        const matchesSearch =
 
-        destination.city.toLowerCase().includes(searchText) ||
+            destination.name.toLowerCase().includes(searchText) ||
 
-        destination.category.toLowerCase().includes(searchText)
+            destination.city.toLowerCase().includes(searchText) ||
 
-    );
+            destination.category.toLowerCase().includes(searchText);
 
-    displayDestinations(filteredDestinations);
+        const matchesCategory =
 
-});
+            selectedCategory === "all" ||
 
+            destination.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+
+    });
+
+    displayDestinations(filtered);
+
+}
+
+searchInput.addEventListener("input", filterDestinations);
+
+categoryFilter.addEventListener("change", filterDestinations);
 // ============================
 // MOBILE MENU
 // ============================
