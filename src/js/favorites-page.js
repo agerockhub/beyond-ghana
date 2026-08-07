@@ -1,7 +1,7 @@
 import destinations from "../data/destinations.js";
 import {
-    removeFavorite,
-    isFavorite
+removeFavorite,
+getFavorites
 } from "./favorites.js";
 
 
@@ -10,9 +10,12 @@ const container = document.querySelector("#favorites-container");
 
 function displayFavorites() {
 
-    const favorites = destinations.filter(destination =>
-        isFavorite(destination.id)
-    );
+  const favoriteIds = getFavorites();
+
+
+const favorites = destinations.filter(destination =>
+    favoriteIds.includes(destination.id)
+);
 
 
     if (favorites.length === 0) {
