@@ -19,7 +19,13 @@ export function displayDestinations(destinations) {
 
                 <p>${destination.description}</p>
 
-                <span>${destination.rating}</span>
+                <p><strong>⭐ ${destination.rating}</strong></p>
+
+                <a
+                    href="destination.html?id=${destination.id}"
+                    class="details-btn">
+                    View Details
+                </a>
 
             </div>
         `;
