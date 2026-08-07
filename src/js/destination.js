@@ -1,3 +1,4 @@
+import { displayGallery } from "./gallery.js";
 import { initializeMap } from "./map.js";
 
 import {
@@ -82,9 +83,16 @@ if (!destination) {
         </button>
 
 
-        <div id="map">
-            <!-- Leaflet OpenStreetMap goes here -->
-        </div>
+      <div id="map">
+    <!-- Leaflet OpenStreetMap goes here -->
+</div>
+
+
+<h2>Photo Gallery</h2>
+
+<div id="gallery">
+    <!-- Unsplash images appear here -->
+</div>
 
     `;
 
@@ -124,5 +132,6 @@ if (!destination) {
 
     // Initialize map
     initializeMap(destination);
+    displayGallery(destination.name);
 
 }
