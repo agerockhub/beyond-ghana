@@ -1,3 +1,8 @@
+import {
+    fetchNearbyPlaces,
+    displayNearbyPlaces
+} from "./nearby.js";
+
 import { displayGallery } from "./gallery.js";
 import { initializeMap } from "./map.js";
 
@@ -16,7 +21,6 @@ const id = Number(params.get("id"));
 
 const destination = destinations.find(d => d.id === id);
 
-
 const container = document.getElementById("destination-details");
 
 
@@ -34,92 +38,88 @@ if (!destination) {
         </a>
     `;
 
-
 } else {
-
 
     container.innerHTML = `
 
         <img
             src="${destination.image}"
             alt="${destination.name}"
-            class="details-image">
-
+            class="details-image"
+        >
 
         <h1>${destination.name}</h1>
-
 
         <p>
             <strong>City:</strong> ${destination.city}
         </p>
 
-
         <p>
             <strong>Category:</strong> ${destination.category}
         </p>
-
 
         <p>
             <strong>Rating:</strong> ⭐ ${destination.rating}
         </p>
 
-
         <p>
             <strong>Opening Hours:</strong> ${destination.openingHours}
         </p>
-
 
         <p>
             ${destination.fullDescription}
         </p>
 
-
         <button id="favorite-btn">
-
-            ${isFavorite(destination.id)
-                ? "❤️ Saved"
-                : "🤍 Add to Favorites"}
-
+            ${
+                isFavorite(destination.id)
+                    ? "❤️ Saved"
+                    : "🤍 Add to Favorites"
+            }
         </button>
 
 
-      <div id="map">
-    <!-- Leaflet OpenStreetMap goes here -->
-</div>
+        <h2>Location</h2>
+
+        <div id="map">
+            <!-- Leaflet OpenStreetMap goes here -->
+        </div>
 
 
-<h2>Photo Gallery</h2>
+        <h2>Photo Gallery</h2>
 
-<div id="gallery">
-    <!-- Unsplash images appear here -->
-</div>
+        <div id="gallery">
+            <p>Loading images...</p>
+        </div>
+
+
+        <h2>Nearby Places</h2>
+
+        <div id="nearby-container">
+            <p>Loading nearby places...</p>
+        </div>
 
     `;
 
 
-
     // Favorite button functionality
-    const favoriteButton = document.getElementById("favorite-btn");
+
+    const favoriteButton =
+        document.getElementById("favorite-btn");
 
 
     favoriteButton.addEventListener("click", () => {
 
-
         if (isFavorite(destination.id)) {
 
-
             removeFavorite(destination.id);
-
 
             favoriteButton.textContent =
                 "🤍 Add to Favorites";
 
-
         } else {
 
-
             addFavorite(destination.id);
-
 
             favoriteButton.textContent =
                 "❤️ Saved";
@@ -129,9 +129,53 @@ if (!destination) {
     });
 
 
+    // Initialize Leaflet map
 
-    // Initialize map
     initializeMap(destination);
+
+
+    // Load Unsplash gallery
+
     displayGallery(destination.name);
+
+
+    // Load nearby places
+
+    fetchNearbyPlaces(
+        destination.latitude,
+        destination.longitude
+    )
+
+        .then(places => {
+
+            displayNearbyPlaces(places);
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Nearby places error:",
+                error
+            );
+
+
+            const nearbyContainer =
+                document.getElementById(
+                    "nearby-container"
+                );
+
+
+            if (nearbyContainer) {
+
+                nearbyContainer.innerHTML = `
+                    <p>
+                        Unable to load nearby places at this time.
+                    </p>
+                `;
+
+            }
+
+        });
 
 }
