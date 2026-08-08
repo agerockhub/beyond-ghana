@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Beyond Ghana</title>
 
   <link rel="stylesheet" href="./src/css/styles.css">
@@ -13,44 +13,44 @@
 <body>
 
   <header>
-<nav class="navbar">
 
-  <div class="logo">
-    <h1>Beyond Ghana</h1>
-  </div>
+    <nav class="navbar">
 
-  <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
-    ☰
-  </button>
+      <div class="logo">
+        <h1>Beyond Ghana</h1>
+      </div>
 
-  <ul class="nav-links" id="nav-links">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
 
-    <li>
-      <a href="index.html">Home</a>
-    </li>
+      <ul class="nav-links" id="nav-links">
 
-    <li>
-      <a href="index.html#destinations">Destinations</a>
-    </li>
+        <li>
+          <a href="index.html">Home</a>
+        </li>
 
-    <li>
-      <a href="favorites.html">Favorites</a>
-    </li>
+        <li>
+          <a href="index.html#destinations">Destinations</a>
+        </li>
 
-    <li>
-      <a href="index.html#about">About</a>
-    </li>
+        <li>
+          <a href="favorites.html">Favorites</a>
+        </li>
 
-  </ul>
+        <li>
+          <a href="index.html#about">About</a>
+        </li>
 
-</nav>
+      </ul>
 
+    </nav>
 
   </header>
 
+
   <main>
 
-    
     <section class="hero">
 
       <div class="hero-content">
@@ -73,33 +73,48 @@
       </div>
 
     </section>
-  <section class="search-section">
-  
-    <input type="text" id="search-input" placeholder="Search by destination, city, or category...">
-  
-    <select id="category-filter">
-  
-      <option value="all">All Categories</option>
-      <option value="Historical Site">Historical Site</option>
-      <option value="National Park">National Park</option>
-      <option value="Museum">Museum</option>
-  
-    </select>
-  
-  </section>
 
-   <section class="featured" id="destinations">
+
+    <section class="search-section">
+
+      <input type="text" id="search-input" placeholder="Search by destination, city, or category...">
+
+      <select id="category-filter">
+
+        <option value="all">All Categories</option>
+        <option value="Historical Site">Historical Site</option>
+        <option value="National Park">National Park</option>
+        <option value="Museum">Museum</option>
+
+      </select>
+
+    </section>
+
+
+    <section class="featured" id="destinations">
 
       <h2>Featured Destinations</h2>
 
       <div id="destination-container" class="destination-container">
-
       </div>
 
     </section>
-    ```
+
+
+    <section id="about">
+
+      <h2>About Beyond Ghana</h2>
+
+      <p>
+        Beyond Ghana helps travelers discover tourist attractions,
+        historical landmarks, cultural sites, wildlife destinations,
+        and other places of interest across Ghana.
+      </p>
+
+    </section>
 
   </main>
+
 
   <footer>
 
@@ -108,6 +123,7 @@
     </p>
 
   </footer>
+
 
   <script type="module" src="./src/js/main.js"></script>
 
